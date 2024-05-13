@@ -14,14 +14,40 @@
 ## Usage
 
 1. Make sure `$XDG_CONFIG_HOME` is set as an evnironment variable
-2. Create a folder called k9s under `$XDG_CONFIG_HOME`
-3. Copy skin.yml from this repository to the k9s folder
-4. Start K9s as normal to see the new theme
+2. Create a folder called `k9s` under `$XDG_CONFIG_HOME`
+3. Copy `skins` from this repository to the `k9s/skins` folder
+4. Choose preferred skin in `k9s/config.yaml` under `k9s > ui > skin` (docs)[https://k9scli.io/topics/skins/]
 
 ## Gallery
 
 ![Rosé Pine with K9s](assets/k9s-rose-pine.png)
 
+## Nix Home Manager users
+
+You may use following command to translate YAML files to `.nix`:
+
+```
+nix run github:euank/yaml2nix ./skins/rose_pine_moon.yaml > /path/to/output/k9s_rose_pine_moon.nix
+```
+
+And then import in your home manager's k9s config:
+```
+programs.k9s = {
+  enable = true;
+  settings = {
+    k9s = {
+      ui = {
+        skin = "rose-pine-moon";
+      };
+    };
+  };
+  skins = {
+    rose-pine-moon = import /path/to/output/k9s_rose_pine_moon.nix;
+  };
+};
+```
+
 ## Thanks to
 
 - [sasoria](https://github.com/sasoria)
+
