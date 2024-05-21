@@ -22,31 +22,6 @@
 
 ![Rosé Pine with K9s](assets/k9s-rose-pine.png)
 
-## Nix Home Manager users
-
-You may use following command to translate YAML files to `.nix`:
-
-```
-nix run github:euank/yaml2nix ./skins/rose_pine_moon.yaml > /path/to/output/k9s_rose_pine_moon.nix
-```
-
-And then import in your home manager's k9s config:
-```
-programs.k9s = {
-  enable = true;
-  settings = {
-    k9s = {
-      ui = {
-        skin = "rose-pine-moon";
-      };
-    };
-  };
-  skins = {
-    rose-pine-moon = import /path/to/output/k9s_rose_pine_moon.nix;
-  };
-};
-```
-
 ## Thanks to
 
 - [sasoria](https://github.com/sasoria)
